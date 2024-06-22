@@ -74,7 +74,7 @@ function App() {
           <h2 className="text-center mb-4">{formik.values.title}</h2>
         )}
 
-        {formik.values?.attendees?.every((el) => el?.attendee) && (
+        {formik.values?.attendees?.find((el) => el?.attendee) && (
           <p className="mb-0">
             <span className="fw-bold">Attendees:</span>{" "}
             {joinWithAnd(
@@ -206,7 +206,15 @@ function App() {
 
   async function copyContent(text) {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(
+        `${formik.values.title} 
+        \n\n${formik.values.briefSummary ? `Attendees:` : ""}${joinWithAnd(
+          formik.values?.attendees.map((el) => el?.attendee).filter((el) => el)
+        )} 
+        \n${formik.values.briefSummary ? `Brief Summary:` : ""}${
+          formik.values.briefSummary
+        } \n\n${text}`
+      );
       toast.success("Content copied to clipboard");
       /* Resolved - text copied to clipboard successfully */
     } catch (err) {
