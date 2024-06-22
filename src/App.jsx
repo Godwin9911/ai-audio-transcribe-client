@@ -258,7 +258,7 @@ function App() {
                   fill="#3b59fe"
                 />
               </svg>{" "}
-              AI Audio Transcribe
+              AI Audio Transcriber
             </h1>
             <fieldset /* disabled="disabled" */>
               <Form.Group className="mb-3">
