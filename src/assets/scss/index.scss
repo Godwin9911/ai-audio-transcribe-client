@@ -13,7 +13,7 @@ $container-max-widths: (
   md: 720px,
   // lg: 960px,
   // xl: 1140px,
-  // xxl: 1320px,,
+  // xxl: 1320px,,,,
 );
 
 $input-placeholder-color: $gray-500;
@@ -38,6 +38,16 @@ body {
   .accordion-header button {
     font-size: 1.2rem;
     font-weight: 500;
+  }
+
+  .actions {
+    display: none;
+  }
+
+  .accordion-item:hover {
+    .actions {
+      display: flex;
+    }
   }
 
   .article {

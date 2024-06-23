@@ -7,6 +7,8 @@ import Icon from "@mdi/react";
 import {
   mdiClose,
   mdiContentCopy,
+  mdiEmailArrowLeftOutline,
+  mdiEmailArrowRightOutline,
   mdiFilePdfBox,
   mdiFileWord,
   mdiNoteEditOutline,
@@ -258,13 +260,14 @@ function App() {
                   fill="#3b59fe"
                 />
               </svg>{" "}
-              AI Audio Transcriber
+              AI Audio Transcriber with Summary
             </h1>
             <fieldset /* disabled="disabled" */>
               <Form.Group className="mb-3">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                  type="text"
+                  as="textarea"
+                  rows={2}
                   placeholder="Enter Title"
                   name="title"
                   value={formik.values.title}
@@ -281,7 +284,7 @@ function App() {
                       {formik.values.attendees.map((el, index) => (
                         <div key={index} className="d-flex gap-2 mb-3">
                           <Form.Control
-                            placeholder="Enter Attendee"
+                            placeholder={`${index + 1}: Enter Attendee`}
                             name={`attendees[${index}].attendee`}
                             value={formik.values.attendees[index].attendee}
                             onChange={formik.handleChange}
@@ -320,7 +323,7 @@ function App() {
                 <Form.Control
                   as="textarea"
                   rows={3}
-                  placeholder="Enter Brief Summary"
+                  placeholder="Enter a Brief Summary"
                   name="briefSummary"
                   value={formik.values.briefSummary}
                   onChange={formik.handleChange}
@@ -395,7 +398,7 @@ function App() {
             <Accordion.Header>Transcription</Accordion.Header>
             <Accordion.Body className="position-relative" bsPrefix="p-0">
               {transcription && (
-                <div className="position-absolute top-0 end-0 d-flex p-1">
+                <div className="position-absolute top-0 end-0 p-1 actions">
                   <Button
                     className="text-dark"
                     onClick={() => copyContent(transcription)}
@@ -407,7 +410,7 @@ function App() {
                   </Button>
                   <Button
                     className="text-danger"
-                    onClick={() => toast.info("PDF: Not Available")}
+                    onClick={() => toast.info("PDF: Not available yet")}
                     variant=""
                     title="Export PDF"
                     size="sm"
@@ -416,7 +419,7 @@ function App() {
                   </Button>
                   <Button
                     className="text-primary"
-                    onClick={() => toast.info("Word Doc: Not Available")}
+                    onClick={() => toast.info("Word Doc: Not available yet")}
                     variant=""
                     title="Export Docx"
                     size="sm"
@@ -425,7 +428,16 @@ function App() {
                   </Button>
                   <Button
                     className="text-dark"
-                    onClick={() => toast.info("Edit: Not Available")}
+                    onClick={() => toast.info("Email: Not available yet")}
+                    variant=""
+                    title="Mail to"
+                    size="sm"
+                  >
+                    <Icon path={mdiEmailArrowRightOutline} size={1} />
+                  </Button>
+                  <Button
+                    className="text-dark"
+                    onClick={() => toast.info("Edit: Not available yet")}
                     variant=""
                     title="Edit"
                     size="sm"
@@ -452,7 +464,7 @@ function App() {
             <Accordion.Header>Summary</Accordion.Header>
             <Accordion.Body className="position-relative" bsPrefix="p-0">
               {summary && (
-                <div className="position-absolute top-0 end-0 d-flex p-1">
+                <div className="position-absolute top-0 end-0 p-1 actions">
                   <Button
                     className="text-dark"
                     onClick={() => copyContent(summary)}
@@ -464,7 +476,7 @@ function App() {
                   </Button>
                   <Button
                     className="text-danger"
-                    onClick={() => toast.info("PDF: Not Available")}
+                    onClick={() => toast.info("PDF: Not available yet")}
                     variant=""
                     title="Export PDF"
                     size="sm"
@@ -473,7 +485,7 @@ function App() {
                   </Button>
                   <Button
                     className="text-primary"
-                    onClick={() => toast.info("Word Doc: Not Available")}
+                    onClick={() => toast.info("Word Doc: Not available yet")}
                     variant=""
                     title="Export Docx"
                     size="sm"
@@ -482,7 +494,16 @@ function App() {
                   </Button>
                   <Button
                     className="text-dark"
-                    onClick={() => toast.info("Edit: Not Available")}
+                    onClick={() => toast.info("Email: Not available yet")}
+                    variant=""
+                    title="Mail to"
+                    size="sm"
+                  >
+                    <Icon path={mdiEmailArrowRightOutline} size={1} />
+                  </Button>
+                  <Button
+                    className="text-dark"
+                    onClick={() => toast.info("Edit: Not available yet")}
                     variant=""
                     title="Edit"
                     size="sm"
